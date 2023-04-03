@@ -3,6 +3,10 @@ let playDiv = document.querySelector('#playDiv');
 let playBtn = document.querySelector('#playBtn')
 let form = document.querySelector('form');
 
+let timerDiv = document.querySelector('#timerDiv');
+let minuteSpan = document.querySelector('#minuteSpan');
+let secondSpan = document.querySelector('#secondSpan');
+
 let grid = myElementFunction('div', 'grid', 'd-flex flex-wrap');
 main.append(grid);
 
@@ -52,6 +56,18 @@ form.addEventListener('submit', function(invioForm) {
     // });
 });
 
+// TIMER
+let seconds = 00;
+let minutes = 00;
+
+playBtn.addEventListener('click', function () {
+    timerDiv.classList.remove('d-none');
+    minutes = 00;
+    seconds = 00;
+
+    myTimer();
+ })
+
 
 
 /* --- MY FUNCTIONS --- */
@@ -64,7 +80,6 @@ function shuffleFunction(array) {
     return array.sort(() => Math.random() - 0.5);
 };
 
-
 // -- Funzione per creare elementi html e assegnare loro id e classe
 function myElementFunction(tagHtml, idElemento, classiElemento) {
     nomeElemento = document.createElement(tagHtml);
@@ -74,6 +89,29 @@ function myElementFunction(tagHtml, idElemento, classiElemento) {
     return nomeElemento;
 };
 
+// -- Funzione per il timer
+function myTimer () {
+    setInterval( function() {
+        minuteSpan.innerHTML = '0' + minutes;
+        seconds++;
+    
+        if (seconds <= 9) {
+            secondSpan.innerHTML = '0' + seconds;
+        }
+        else if (seconds > 9) {
+            secondSpan.innerHTML = seconds;
+        }
+        
+        if (seconds > 59) {
+            seconds = 00;
+            minutes++;
+            
+        }
+        else if (minutes > 9) {
+            minuteSpan.innerHTML = minutes;
+        }
+    },1000)
+};
 
 // -- Funzione per creare le griglie
 // il parametro difficulty corrisponde alla stringa 'easy','medium' o 'hard', serve ad associare la classe e le corrispondenti caratteristiche css.
@@ -117,9 +155,3 @@ function createGrid(numberBoxes, difficulty) {
         })
     };
 }
-
-
-
-// necessario per inizializzare i tooltip Bootstrap
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

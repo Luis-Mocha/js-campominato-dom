@@ -14,4 +14,6 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 
 ---
 
-Inserisco 16 caselle contententi un elemento "bomba", le quali se cliccate causano la sconfitta e interrompono la partita.
+Inserisco 16 caselle contententi un elemento "bomba".
+La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
+Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
