@@ -2,11 +2,13 @@ let main = document.querySelector('main');
 let playDiv = document.querySelector('#playDiv');
 let playBtn = document.querySelector('#playBtn')
 let form = document.querySelector('form');
-
+//timer
 let timerDiv = document.querySelector('#timerDiv');
 let minuteSpan = document.querySelector('#minuteSpan');
 let secondSpan = document.querySelector('#secondSpan');
-
+//punteggio
+let punteggioDiv = document.querySelector('#punteggioDiv');
+//creo l'elemento grid
 let grid = myElementFunction('div', 'grid', 'd-flex flex-wrap');
 main.append(grid);
 
@@ -17,7 +19,11 @@ form.addEventListener('submit', function(invioForm) {
     grid.innerHTML = '';
     // rendo il grid di nuovo cliccabile dopo una sconfitta precedente
     grid.classList.remove('unclickable');
+    // azzero il punteggio
+    let punti = 0;
+    punteggioDiv.innerHTML = `Punteggio: ${punti}`
 
+    //creazione grid in base alla difficoltà scelta
     let difficultyInput = document.querySelector('#difficultyInput').value;
     console.log(difficultyInput)
 
@@ -45,21 +51,20 @@ form.addEventListener('submit', function(invioForm) {
             grid.classList.add('unclickable');
             });
     };
-    // bombs.forEach(bomb => {
-    //     bomb.addEventListener('click', () => {
-    //     console.log('Hai cliccato su una bomba!');
-    //     let loseTitle = myElementFunction('h2','loseTitle','text-center')
-    //     loseTitle.innerHTML = 'Hai cliccato su una BOMBA, hai perso!!'
-    //     grid.append(loseTitle);
-    //     grid.classList.add('unclickable');
-    //     });
-    // });
+
+    //Quando clicco su una casella sicura 
+    let safeBoxes = document.querySelectorAll('.safe-box');
+    for (let i = 0; i < safeBoxes.length; i++) {
+        safeBoxes[i].addEventListener('click', function() {
+            punti++
+            punteggioDiv.innerHTML = `Punteggio: ${punti}`
+        });
+    };
 });
 
 // TIMER
 let seconds = 00;
 let minutes = 00;
-
 playBtn.addEventListener('click', function () {
     timerDiv.classList.remove('d-none');
     minutes = 00;
@@ -67,7 +72,6 @@ playBtn.addEventListener('click', function () {
 
     myTimer();
  })
-
 
 
 /* --- MY FUNCTIONS --- */
@@ -147,11 +151,12 @@ function createGrid(numberBoxes, difficulty) {
             boxArray[i].innerHTML = `<i class="fa-solid fa-land-mine-on fa-bounce"></i>`;
         } else {
             // boxArray[i].innerHTML = `${randomNumbersList[i]}`;
+            boxArray[i].classList.add('safe-box');
             boxArray[i].innerHTML = `<i class="fa-solid fa-leaf"></i>`;
         }
 
         boxArray[i].addEventListener('click', function() {
-            this.classList.add('box-clicked');
+            this.classList.add('box-clicked', 'unclickable');
         })
     };
 }
