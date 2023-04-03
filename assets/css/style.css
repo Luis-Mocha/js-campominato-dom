@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(33,37,41);
+    color: white;
+}
+
+main {
+    width: 90%;
+    margin: auto;
+}
+@media screen and (min-width: 576px){
+    main {
+        max-width: 500px;
+    }
+}
+
+.box {
+    background-color: rgb(192,192,192);
+    color: rgba(0, 0, 0, 0);
+    aspect-ratio: 1;
+    border: 4px inset black;
+    cursor: pointer;
+}
+
+.box-easy {
+    width: calc(100% / 10);
+} 
+.box-medium {
+    width: calc(100% / 9);
+} 
+.box-hard {
+    width: calc(100% / 7);
+} 
+
+.box-clicked {
+    background-color: rgb(216, 184, 189);
+    color: red;
+}
+.box-clicked .fa-leaf {
+    color: green;
+}
+
+
+.unclickable {
+    pointer-events: none;
+}
