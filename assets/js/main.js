@@ -15,7 +15,6 @@ gridContainer.append(grid);
 // creo il div per il risultato
 let loseTitle = myElementFunction('span','loseTitle', 'text-center fw-bold mx-1 fs-5');
 
-
 // Clicco Play
 form.addEventListener('submit', function(invioForm) {
     invioForm.preventDefault();
@@ -50,12 +49,11 @@ form.addEventListener('submit', function(invioForm) {
     console.log(bombs)
     for (let i = 0; i < bombs.length; i++) {
         bombs[i].addEventListener('click', function() {
-            console.log('Hai cliccato su una bomba!');
             
             loseTitle.innerHTML = 'BOMBA - Hai perso!';
             footer.append(loseTitle);
             grid.classList.add('unclickable');
-            });
+        });
     };
 
     //Quando clicco su una casella sicura 
@@ -69,6 +67,14 @@ form.addEventListener('submit', function(invioForm) {
 });
 
 // TIMER
+let timer = myTimer();
+playBtn.addEventListener('click', function () {
+    timerDiv.classList.remove('d-none')
+    minutes = 0;
+    seconds = 0;
+
+    timer;    
+});
 
 
 
@@ -105,14 +111,14 @@ function myTimer () {
         }
         
         if (seconds > 59) {
-            seconds = 00;
+            seconds = 0;
             minutes++;
             
         }
         else if (minutes > 9) {
             minuteSpan.innerHTML = minutes;
         }
-    },1000)
+    }, 1000)
 };
 
 // -- Funzione per creare le griglie
