@@ -13,7 +13,7 @@ let punteggioDiv = document.querySelector('#punteggioDiv');
 let grid = myElementFunction('div', 'grid', 'd-flex flex-wrap');
 gridContainer.append(grid);
 // creo il div per il risultato
-let loseTitle = myElementFunction('span','loseTitle', 'text-center fw-bold fs-5');
+let loseTitle = myElementFunction('span','loseTitle', 'text-center fw-bold mx-1 fs-5');
 
 
 // Clicco Play
