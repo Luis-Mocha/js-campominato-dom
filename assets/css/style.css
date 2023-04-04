@@ -1,18 +1,44 @@
+/* html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
 body {
     background-color: rgb(33,37,41);
     color: white;
 }
-
 main {
+    height:calc(100vh - 60px);
+    overflow: auto;
+}
+
+#grid-container {
+    height: calc(100vh - 160px);
+}
+
+#grid {
     width: 90%;
     margin: auto;
 }
 @media screen and (min-width: 576px){
-    main {
+    #grid {
         max-width: 500px;
     }
 }
 
+#playDiv {
+    height: 100px;
+    background-color: lightslategrey;
+}
+
+footer {
+    height: 60px;
+    background-color: lightslategrey;;
+}
+
+
+/* Caselle */
 .box {
     background-color: rgb(192,192,192);
     color: rgba(0, 0, 0, 0);
@@ -31,14 +57,14 @@ main {
     width: calc(100% / 7);
 } 
 
-.box-clicked {
+.bomb.box-clicked {
     background-color: rgb(216, 184, 189);
     color: red;
 }
-.box-clicked .fa-leaf {
+.safe-box.box-clicked {
+    background-color: rgb(172, 212, 172);
     color: green;
 }
-
 
 .unclickable {
     pointer-events: none;

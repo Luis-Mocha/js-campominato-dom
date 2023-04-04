@@ -1,7 +1,8 @@
-let main = document.querySelector('main');
-let playDiv = document.querySelector('#playDiv');
+let gridContainer = document.querySelector('#grid-container'); 
 let playBtn = document.querySelector('#playBtn')
 let form = document.querySelector('form');
+let footer = document.querySelector('footer');
+
 //timer
 let timerDiv = document.querySelector('#timerDiv');
 let minuteSpan = document.querySelector('#minuteSpan');
@@ -10,7 +11,10 @@ let secondSpan = document.querySelector('#secondSpan');
 let punteggioDiv = document.querySelector('#punteggioDiv');
 //creo l'elemento grid
 let grid = myElementFunction('div', 'grid', 'd-flex flex-wrap');
-main.append(grid);
+gridContainer.append(grid);
+// creo il div per il risultato
+let loseTitle = myElementFunction('span','loseTitle', 'text-center fw-bold fs-5');
+
 
 // Clicco Play
 form.addEventListener('submit', function(invioForm) {
@@ -22,6 +26,8 @@ form.addEventListener('submit', function(invioForm) {
     // azzero il punteggio
     let punti = 0;
     punteggioDiv.innerHTML = `Punteggio: ${punti}`
+    // resetto il risultato
+    loseTitle.innerHTML = '';
 
     //creazione grid in base alla difficoltà scelta
     let difficultyInput = document.querySelector('#difficultyInput').value;
@@ -45,9 +51,9 @@ form.addEventListener('submit', function(invioForm) {
     for (let i = 0; i < bombs.length; i++) {
         bombs[i].addEventListener('click', function() {
             console.log('Hai cliccato su una bomba!');
-            let loseTitle = myElementFunction('h2','loseTitle','text-center');
-            loseTitle.innerHTML = 'Hai cliccato su una BOMBA, hai perso!!';
-            grid.append(loseTitle);
+            
+            loseTitle.innerHTML = 'BOMBA - Hai perso!';
+            footer.append(loseTitle);
             grid.classList.add('unclickable');
             });
     };
@@ -63,15 +69,7 @@ form.addEventListener('submit', function(invioForm) {
 });
 
 // TIMER
-let seconds = 00;
-let minutes = 00;
-playBtn.addEventListener('click', function () {
-    timerDiv.classList.remove('d-none');
-    minutes = 00;
-    seconds = 00;
 
-    myTimer();
- })
 
 
 /* --- MY FUNCTIONS --- */
